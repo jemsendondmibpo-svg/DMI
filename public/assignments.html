@@ -457,6 +457,239 @@
         </div>
     </div>
 
+    <!-- Add/Edit Assignment Modal -->
+    <div class="modal-overlay hidden" id="assignmentFormModal">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <div>
+                    <h3 class="modal-title" id="assignmentFormTitle">New Assignment</h3>
+                    <p class="modal-subtitle">Fill in the details to create a new assignment</p>
+                </div>
+                <button class="modal-close" onclick="closeAssignmentFormModal()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form id="assignmentForm" class="assignment-form">
+                    <input type="hidden" id="assignmentId" value="">
+                    
+                    <!-- Asset Information Section -->
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <div class="form-section-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="form-section-title">Asset Information</h4>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="formAssetName">
+                                    <svg class="form-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                    </svg>
+                                    Asset Name
+                                </label>
+                                <input type="text" id="formAssetName" class="form-input" placeholder="Enter asset name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="formAssetTag">
+                                    <svg class="form-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                                        <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                                    </svg>
+                                    Asset Tag
+                                </label>
+                                <input type="text" id="formAssetTag" class="form-input" placeholder="e.g., DM-LAP-001" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="formCategory">
+                                    <svg class="form-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    </svg>
+                                    Category
+                                </label>
+                                <select id="formCategory" class="form-select" required>
+                                    <option value="">Select category</option>
+                                    <option value="Laptop">Laptop</option>
+                                    <option value="Desktop">Desktop</option>
+                                    <option value="Monitor">Monitor</option>
+                                    <option value="Keyboard">Keyboard</option>
+                                    <option value="Mouse">Mouse</option>
+                                    <option value="Headset">Headset</option>
+                                    <option value="Phone">Phone</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="formStatus">
+                                    <svg class="form-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                    Status
+                                </label>
+                                <select id="formStatus" class="form-select" required onchange="toggleEmployeeFields()">
+                                    <option value="">Select status</option>
+                                    <option value="Available">Available</option>
+                                    <option value="Assigned">Assigned</option>
+                                    <option value="Under Maintenance">Under Maintenance</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Employee Information Section (shown when status is Assigned) -->
+                    <div class="form-section" id="employeeSection" style="display: none;">
+                        <div class="form-section-header">
+                            <div class="form-section-icon form-section-icon-purple">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </div>
+                            <h4 class="form-section-title">Employee Information</h4>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="formEmployeeName">
+                                    <svg class="form-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="12" cy="7" r="4"></circle>
+                                    </svg>
+                                    Employee Name
+                                </label>
+                                <input type="text" id="formEmployeeName" class="form-input" placeholder="Enter employee name">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="formEmployeeId">
+                                    <svg class="form-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="8.5" cy="7" r="4"></circle>
+                                        <polyline points="17 11 19 13 23 9"></polyline>
+                                    </svg>
+                                    Employee ID
+                                </label>
+                                <input type="text" id="formEmployeeId" class="form-input" placeholder="e.g., EMP-001">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="formDepartment">
+                                    <svg class="form-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                                    </svg>
+                                    Department
+                                </label>
+                                <select id="formDepartment" class="form-select">
+                                    <option value="">Select department</option>
+                                    <option value="IT Department">IT Department</option>
+                                    <option value="HR Department">HR Department</option>
+                                    <option value="Finance">Finance</option>
+                                    <option value="Operations">Operations</option>
+                                    <option value="Marketing">Marketing</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="formPosition">
+                                    <svg class="form-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    </svg>
+                                    Position
+                                </label>
+                                <input type="text" id="formPosition" class="form-input" placeholder="Enter position">
+                            </div>
+
+                            <div class="form-group form-group-full">
+                                <label class="form-label" for="formAssignmentDate">
+                                    <svg class="form-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    Assignment Date
+                                </label>
+                                <input type="date" id="formAssignmentDate" class="form-input">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Information Section -->
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <div class="form-section-icon form-section-icon-amber">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                </svg>
+                            </div>
+                            <h4 class="form-section-title">Additional Information</h4>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group form-group-full">
+                                <label class="form-label" for="formLocation">
+                                    <svg class="form-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                    Location
+                                </label>
+                                <input type="text" id="formLocation" class="form-input" placeholder="e.g., Floor 8, Desk A-12">
+                            </div>
+
+                            <div class="form-group form-group-full">
+                                <label class="form-label" for="formNotes">
+                                    <svg class="form-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                        <polyline points="10 9 9 9 8 9"></polyline>
+                                    </svg>
+                                    Notes
+                                </label>
+                                <textarea id="formNotes" class="form-textarea" rows="3" placeholder="Add any additional notes or comments..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeAssignmentFormModal()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    Cancel
+                </button>
+                <button type="button" class="btn btn-primary" onclick="saveAssignment()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                        <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                        <polyline points="7 3 7 8 15 8"></polyline>
+                    </svg>
+                    <span id="saveButtonText">Save Assignment</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- View Assignment Modal -->
     <div class="modal-overlay hidden" id="viewModal">
         <div class="modal">

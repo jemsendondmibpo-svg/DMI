@@ -307,7 +307,7 @@ function renderAssignments() {
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
                         </button>
-                        <button class="action-btn action-btn-edit" onclick="editAssignment('${assignment.assignmentId}')" title="Edit">
+                        <button class="action-btn action-btn-edit" onclick="openEditModal('${assignment.assignmentId}')" title="Edit">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                                 <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
@@ -444,16 +444,131 @@ function closeViewModal() {
     viewingAssignment = null;
 }
 
-// Edit Assignment
-function editAssignment(assignmentId) {
-    showToast('Edit assignment feature coming soon!', 'success');
-    // In a real app, this would navigate to edit page
-}
-
 // Open Add Modal
 function openAddModal() {
-    showToast('Add assignment feature coming soon!', 'success');
-    // In a real app, this would navigate to add page
+    // Reset form
+    document.getElementById('assignmentForm').reset();
+    document.getElementById('assignmentId').value = '';
+    document.getElementById('assignmentFormTitle').textContent = 'New Assignment';
+    document.getElementById('saveButtonText').textContent = 'Save Assignment';
+    document.getElementById('employeeSection').style.display = 'none';
+    
+    // Show modal
+    document.getElementById('assignmentFormModal').classList.remove('hidden');
+}
+
+// Open Edit Modal
+function openEditModal(assignmentId) {
+    const assignment = assignmentsData.find(a => a.assignmentId === assignmentId);
+    if (!assignment) return;
+    
+    // Populate form
+    document.getElementById('assignmentId').value = assignment.assignmentId;
+    document.getElementById('formAssetName').value = assignment.assetName;
+    document.getElementById('formAssetTag').value = assignment.assetSKU || assignment.assignmentId;
+    document.getElementById('formCategory').value = assignment.category || 'Laptop';
+    document.getElementById('formStatus').value = assignment.status;
+    
+    if (assignment.status === 'Assigned') {
+        document.getElementById('formEmployeeName').value = assignment.assignedTo;
+        document.getElementById('formEmployeeId').value = assignment.employeeId || '';
+        document.getElementById('formDepartment').value = assignment.department;
+        document.getElementById('formPosition').value = assignment.position || '';
+        document.getElementById('formAssignmentDate').value = assignment.dateAssigned ? new Date(assignment.dateAssigned).toISOString().split('T')[0] : '';
+        document.getElementById('employeeSection').style.display = 'block';
+    }
+    
+    document.getElementById('formLocation').value = `${assignment.floor}, ${assignment.workstation}` || '';
+    document.getElementById('formNotes').value = assignment.notes || '';
+    
+    // Update modal title
+    document.getElementById('assignmentFormTitle').textContent = 'Edit Assignment';
+    document.getElementById('saveButtonText').textContent = 'Update Assignment';
+    
+    // Show modal
+    document.getElementById('assignmentFormModal').classList.remove('hidden');
+}
+
+// Close Assignment Form Modal
+function closeAssignmentFormModal() {
+    document.getElementById('assignmentFormModal').classList.add('hidden');
+    document.getElementById('assignmentForm').reset();
+}
+
+// Toggle Employee Fields
+function toggleEmployeeFields() {
+    const status = document.getElementById('formStatus').value;
+    const employeeSection = document.getElementById('employeeSection');
+    
+    if (status === 'Assigned') {
+        employeeSection.style.display = 'block';
+        // Make fields required
+        document.getElementById('formEmployeeName').setAttribute('required', 'required');
+        document.getElementById('formDepartment').setAttribute('required', 'required');
+    } else {
+        employeeSection.style.display = 'none';
+        // Remove required attribute
+        document.getElementById('formEmployeeName').removeAttribute('required');
+        document.getElementById('formDepartment').removeAttribute('required');
+        // Clear fields
+        document.getElementById('formEmployeeName').value = '';
+        document.getElementById('formEmployeeId').value = '';
+        document.getElementById('formDepartment').value = '';
+        document.getElementById('formPosition').value = '';
+        document.getElementById('formAssignmentDate').value = '';
+    }
+}
+
+// Save Assignment
+function saveAssignment() {
+    const form = document.getElementById('assignmentForm');
+    
+    // Validate form
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
+    
+    const assignmentId = document.getElementById('assignmentId').value;
+    const status = document.getElementById('formStatus').value;
+    
+    // Parse location
+    const location = document.getElementById('formLocation').value || '';
+    const locationParts = location.split(',').map(part => part.trim());
+    
+    const assignmentData = {
+        assignmentId: assignmentId || `ASN-${String(assignmentsData.length + 1).padStart(3, '0')}`,
+        assetName: document.getElementById('formAssetName').value,
+        assetSKU: document.getElementById('formAssetTag').value,
+        category: document.getElementById('formCategory').value,
+        status: status,
+        assignedTo: status === 'Assigned' ? document.getElementById('formEmployeeName').value : 'Unassigned',
+        employeeId: status === 'Assigned' ? document.getElementById('formEmployeeId').value : '',
+        department: status === 'Assigned' ? document.getElementById('formDepartment').value : '',
+        position: status === 'Assigned' ? document.getElementById('formPosition').value : '',
+        workstation: locationParts[1] || 'N/A',
+        floor: locationParts[0] || 'N/A',
+        dateAssigned: status === 'Assigned' ? document.getElementById('formAssignmentDate').value : null,
+        notes: document.getElementById('formNotes').value
+    };
+    
+    if (assignmentId) {
+        // Update existing assignment
+        const index = assignmentsData.findIndex(a => a.assignmentId === assignmentId);
+        if (index !== -1) {
+            assignmentsData[index] = assignmentData;
+            showToast('Assignment updated successfully!', 'success');
+        }
+    } else {
+        // Add new assignment
+        assignmentsData.push(assignmentData);
+        showToast('Assignment created successfully!', 'success');
+    }
+    
+    // Close modal and refresh data
+    closeAssignmentFormModal();
+    updateSummaryCards();
+    renderAssignments();
 }
 
 // Open Delete Modal
