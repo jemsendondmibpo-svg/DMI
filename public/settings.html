@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Digital Minds Inventory Management System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/settings.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Animated Background Elements -->
+        <div class="background-elements">
+            <div class="bg-orb bg-orb-1"></div>
+            <div class="bg-orb bg-orb-2"></div>
+            <div class="bg-orb bg-orb-3"></div>
+        </div>
+
+        <!-- Desktop Sidebar -->
+        <aside class="sidebar desktop-sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <img src="https://cdn.digitalmindsbpo.com/wp-content/uploads/2022/02/Digital-Minds-BPO-Footer-Logo-768x142.png" 
+                         alt="Digital Minds BPO" 
+                         class="logo-image">
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="inventory.html" class="nav-item">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    </svg>
+                    <span class="nav-text">Inventory</span>
+                </a>
+                <a href="assignments.html" class="nav-item">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="8.5" cy="7" r="4"></circle>
+                        <polyline points="17 11 19 13 23 9"></polyline>
+                    </svg>
+                    <span class="nav-text">Assignments</span>
+                </a>
+                <a href="reports.html" class="nav-item">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="20" x2="12" y2="10"></line>
+                        <line x1="18" y1="20" x2="18" y2="4"></line>
+                        <line x1="6" y1="20" x2="6" y2="16"></line>
+                    </svg>
+                    <span class="nav-text">Reports</span>
+                </a>
+                <a href="user-management.html" class="nav-item" id="userManagementNav">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <span class="nav-text">User Management</span>
+                </a>
+                <a href="settings.html" class="nav-item active">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M12 1v6m0 6v6m9-9h-6m-6 0H3m15.364 6.364l-4.243-4.243M9.879 9.879L5.636 5.636m12.728 0l-4.243 4.243M9.879 14.121l-4.243 4.243"></path>
+                    </svg>
+                    <span class="nav-text">Settings</span>
+                    <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Mobile Sidebar (same structure as other pages) -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+        <aside class="sidebar mobile-sidebar" id="mobileSidebar">
+            <!-- Same mobile sidebar content -->
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <button class="hamburger mobile-only" id="mobileHamburger">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+
+                <button class="hamburger desktop-only">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+
+                <h2 class="page-title">System Settings</h2>
+                <div class="header-spacer"></div>
+
+                <button class="notification-btn" id="notificationBtn">
+                    <svg class="notification-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <span class="notification-badge">3</span>
+                </button>
+
+                <div class="user-profile">
+                    <button class="profile-trigger" id="profileTrigger">
+                        <div class="profile-info desktop-only">
+                            <p class="profile-name" id="userName">Admin User</p>
+                            <p class="profile-role" id="userRole">Admin</p>
+                        </div>
+                        <div class="profile-avatar" id="userAvatar">AU</div>
+                    </button>
+                </div>
+
+                <button class="quick-logout" id="quickLogout" title="Logout">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                </button>
+            </header>
+
+            <!-- Page Content -->
+            <main class="page-content settings-container">
+                <!-- Premium Header with Stats -->
+                <div class="settings-premium-header">
+                    <div class="settings-header-main">
+                        <div class="settings-header-icon-wrapper">
+                            <div class="settings-header-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path d="M12 1v6m0 6v6m9-9h-6m-6 0H3m15.364 6.364l-4.243-4.243M9.879 9.879L5.636 5.636m12.728 0l-4.243 4.243M9.879 14.121l-4.243 4.243"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="settings-header-content">
+                            <div class="settings-header-badge">System Configuration</div>
+                            <h1 class="settings-header-title">Settings & Preferences</h1>
+                            <p class="settings-header-subtitle">Customize your system experience and manage organizational information</p>
+                        </div>
+                    </div>
+                    <div class="settings-header-stats">
+                        <div class="settings-stat-item">
+                            <div class="settings-stat-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </div>
+                            <div class="settings-stat-text">
+                                <p class="settings-stat-label">Profile</p>
+                                <p class="settings-stat-value">Complete</p>
+                            </div>
+                        </div>
+                        <div class="settings-stat-item">
+                            <div class="settings-stat-icon settings-stat-icon-purple">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                                    <line x1="9" y1="8" x2="15" y2="8"></line>
+                                </svg>
+                            </div>
+                            <div class="settings-stat-text">
+                                <p class="settings-stat-label">Company</p>
+                                <p class="settings-stat-value">Verified</p>
+                            </div>
+                        </div>
+                        <div class="settings-stat-item">
+                            <div class="settings-stat-icon settings-stat-icon-amber">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                </svg>
+                            </div>
+                            <div class="settings-stat-text">
+                                <p class="settings-stat-label">Alerts</p>
+                                <p class="settings-stat-value" id="activeAlerts">5 Active</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Layout -->
+                <div class="settings-layout">
+                    <!-- Sidebar Navigation -->
+                    <div class="settings-sidebar">
+                        <div class="settings-nav-card">
+                            <p class="settings-nav-label">Navigation</p>
+                            <nav class="settings-nav">
+                                <button class="settings-nav-item active" data-section="personal">
+                                    <div class="settings-nav-content">
+                                        <div class="settings-nav-icon settings-nav-icon-blue">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                <circle cx="12" cy="7" r="4"></circle>
+                                            </svg>
+                                        </div>
+                                        <span>Personal Information</span>
+                                    </div>
+                                    <svg class="settings-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </button>
+
+                                <button class="settings-nav-item" data-section="company">
+                                    <div class="settings-nav-content">
+                                        <div class="settings-nav-icon settings-nav-icon-purple">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                                                <line x1="9" y1="8" x2="15" y2="8"></line>
+                                                <line x1="9" y1="12" x2="15" y2="12"></line>
+                                                <line x1="9" y1="16" x2="13" y2="16"></line>
+                                            </svg>
+                                        </div>
+                                        <span>Company Information</span>
+                                    </div>
+                                    <svg class="settings-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </button>
+
+                                <button class="settings-nav-item" data-section="notifications">
+                                    <div class="settings-nav-content">
+                                        <div class="settings-nav-icon settings-nav-icon-amber">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                                            </svg>
+                                        </div>
+                                        <span>Notifications</span>
+                                    </div>
+                                    <svg class="settings-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </button>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- Content Panel -->
+                    <div class="settings-content">
+                        <!-- Personal Information Section -->
+                        <div class="settings-section active" id="personalSection">
+                            <div class="section-card">
+                                <div class="section-header section-header-blue">
+                                    <div class="section-header-icon section-header-icon-blue">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="12" cy="7" r="4"></circle>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="section-title">Personal Information</h3>
+                                        <p class="section-subtitle">Manage your account details and preferences</p>
+                                    </div>
+                                </div>
+
+                                <div class="section-body">
+                                    <form class="settings-form" id="personalForm">
+                                        <div class="form-grid">
+                                            <div class="form-group">
+                                                <label class="form-label">
+                                                    <svg class="form-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                        <circle cx="12" cy="7" r="4"></circle>
+                                                    </svg>
+                                                    Full Name
+                                                </label>
+                                                <input type="text" class="form-input" id="fullName" value="Jeremy Sendon" placeholder="Enter your full name">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="form-label">
+                                                    <svg class="form-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                                        <path d="m2 7 10 6 10-6"></path>
+                                                    </svg>
+                                                    Email Address
+                                                </label>
+                                                <input type="email" class="form-input" id="emailAddress" value="jeremy.sendon@digitalmindsbpo.com" placeholder="your.email@company.com">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="form-label">
+                                                    <svg class="form-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                                    </svg>
+                                                    Phone Number
+                                                </label>
+                                                <input type="tel" class="form-input" id="phoneNumber" value="+63 917 123 4567" placeholder="+63 XXX XXX XXXX">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="form-label">
+                                                    <svg class="form-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                                                    </svg>
+                                                    Department
+                                                </label>
+                                                <input type="text" class="form-input" id="department" value="IT Operations" placeholder="Your department">
+                                            </div>
+
+                                            <div class="form-group form-group-full">
+                                                <label class="form-label">
+                                                    <svg class="form-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                                    </svg>
+                                                    Role
+                                                </label>
+                                                <div class="form-input-wrapper">
+                                                    <input type="text" class="form-input form-input-readonly" id="role" value="Admin" readonly>
+                                                    <span class="form-badge">System Managed</span>
+                                                </div>
+                                                <div class="form-info">
+                                                    <svg class="form-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <circle cx="12" cy="12" r="10"></circle>
+                                                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                                                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                                    </svg>
+                                                    <p>Your role is managed by the system administrator and cannot be changed from this panel.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="section-footer">
+                                            <p class="section-footer-text">Last updated: <span id="personalLastUpdated"></span></p>
+                                            <button type="button" class="btn-save" onclick="savePersonalSettings()">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                                                    <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                                                    <polyline points="7 3 7 8 15 8"></polyline>
+                                                </svg>
+                                                <span>Save Changes</span>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Company Information Section -->
+                        <div class="settings-section" id="companySection">
+                            <div class="section-card">
+                                <div class="section-header section-header-purple">
+                                    <div class="section-header-icon section-header-icon-purple">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                                            <line x1="9" y1="8" x2="15" y2="8"></line>
+                                            <line x1="9" y1="12" x2="15" y2="12"></line>
+                                            <line x1="9" y1="16" x2="13" y2="16"></line>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="section-title">Company Information</h3>
+                                        <p class="section-subtitle">Configure your organization details and business information</p>
+                                    </div>
+                                </div>
+
+                                <div class="section-body">
+                                    <form class="settings-form" id="companyForm">
+                                        <!-- Basic Information -->
+                                        <div class="form-section">
+                                            <h4 class="form-section-title">
+                                                <span class="form-section-indicator"></span>
+                                                Basic Information
+                                            </h4>
+
+                                            <div class="form-grid">
+                                                <div class="form-group form-group-full">
+                                                    <label class="form-label">Company Name</label>
+                                                    <input type="text" class="form-input" id="companyName" value="Digital Minds BPO Services Inc." placeholder="Your company name">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">Company Email</label>
+                                                    <input type="email" class="form-input" id="companyEmail" value="info@digitalmindsbpo.com" placeholder="contact@company.com">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">Phone Number</label>
+                                                    <input type="tel" class="form-input" id="companyPhone" value="+63 2 8123 4567" placeholder="+63 XXX XXX XXXX">
+                                                </div>
+
+                                                <div class="form-group form-group-full">
+                                                    <label class="form-label">Website</label>
+                                                    <input type="url" class="form-input" id="companyWebsite" value="https://www.digitalmindsbpo.com" placeholder="https://www.yourcompany.com">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Address Information -->
+                                        <div class="form-section">
+                                            <h4 class="form-section-title">
+                                                <span class="form-section-indicator"></span>
+                                                Address Information
+                                            </h4>
+
+                                            <div class="form-grid">
+                                                <div class="form-group form-group-full">
+                                                    <label class="form-label">Street Address</label>
+                                                    <input type="text" class="form-input" id="streetAddress" value="Floor 8, IT Park Building, Cebu Business Park" placeholder="Building, Floor, Street">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">City</label>
+                                                    <input type="text" class="form-input" id="city" value="Cebu City" placeholder="City">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">Province</label>
+                                                    <input type="text" class="form-input" id="province" value="Cebu" placeholder="Province/State">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">Postal Code</label>
+                                                    <input type="text" class="form-input" id="postalCode" value="6000" placeholder="XXXX">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">Country</label>
+                                                    <input type="text" class="form-input" id="country" value="Philippines" placeholder="Country">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Business Details -->
+                                        <div class="form-section">
+                                            <h4 class="form-section-title">
+                                                <span class="form-section-indicator"></span>
+                                                Business Details
+                                            </h4>
+
+                                            <div class="form-grid">
+                                                <div class="form-group">
+                                                    <label class="form-label">Business Type</label>
+                                                    <input type="text" class="form-input" id="businessType" value="Business Process Outsourcing" placeholder="e.g., Corporation, LLC">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">Industry</label>
+                                                    <input type="text" class="form-input" id="industry" value="Information Technology & Services" placeholder="Industry sector">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">Registration Number</label>
+                                                    <input type="text" class="form-input" id="registrationNumber" value="CS201234567" placeholder="Business registration #">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">Tax ID</label>
+                                                    <input type="text" class="form-input" id="taxId" value="123-456-789-000" placeholder="Tax identification number">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="section-footer">
+                                            <p class="section-footer-text">Last updated: <span id="companyLastUpdated"></span></p>
+                                            <button type="button" class="btn-save" onclick="saveCompanySettings()">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                                                    <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                                                    <polyline points="7 3 7 8 15 8"></polyline>
+                                                </svg>
+                                                <span>Save Changes</span>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Notifications Section -->
+                        <div class="settings-section" id="notificationsSection">
+                            <div class="section-card">
+                                <div class="section-header section-header-amber">
+                                    <div class="section-header-icon section-header-icon-amber">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="section-title">Notification Preferences</h3>
+                                        <p class="section-subtitle">Control how and when you receive alerts and updates</p>
+                                    </div>
+                                </div>
+
+                                <div class="section-body">
+                                    <div class="notifications-list">
+                                        <div class="notification-item">
+                                            <div class="notification-content">
+                                                <span class="notification-emoji">📊</span>
+                                                <div class="notification-text">
+                                                    <p class="notification-title">Low Stock Alerts</p>
+                                                    <p class="notification-desc">Get notified when items fall below minimum quantity threshold</p>
+                                                </div>
+                                            </div>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" id="lowStock" checked>
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+
+                                        <div class="notification-item">
+                                            <div class="notification-content">
+                                                <span class="notification-emoji">🚨</span>
+                                                <div class="notification-text">
+                                                    <p class="notification-title">Out of Stock Alerts</p>
+                                                    <p class="notification-desc">Immediate alerts when items reach zero quantity</p>
+                                                </div>
+                                            </div>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" id="outOfStock" checked>
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+
+                                        <div class="notification-item">
+                                            <div class="notification-content">
+                                                <span class="notification-emoji">✨</span>
+                                                <div class="notification-text">
+                                                    <p class="notification-title">New Item Added</p>
+                                                    <p class="notification-desc">Receive updates when a new item is added to inventory</p>
+                                                </div>
+                                            </div>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" id="newItem">
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+
+                                        <div class="notification-item">
+                                            <div class="notification-content">
+                                                <span class="notification-emoji">📈</span>
+                                                <div class="notification-text">
+                                                    <p class="notification-title">Weekly Reports</p>
+                                                    <p class="notification-desc">Receive comprehensive inventory summary every Monday morning</p>
+                                                </div>
+                                            </div>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" id="weeklyReport" checked>
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+
+                                        <div class="notification-item">
+                                            <div class="notification-content">
+                                                <span class="notification-emoji">📧</span>
+                                                <div class="notification-text">
+                                                    <p class="notification-title">Email Notifications</p>
+                                                    <p class="notification-desc">Send all alerts and notifications to your registered email address</p>
+                                                </div>
+                                            </div>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" id="emailAlerts" checked>
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="section-footer">
+                                        <p class="section-footer-text">Last updated: <span id="notificationsLastUpdated"></span></p>
+                                        <button type="button" class="btn-save" onclick="saveNotificationSettings()">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                                                <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                                                <polyline points="7 3 7 8 15 8"></polyline>
+                                            </svg>
+                                            <span>Save Preferences</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast hidden" id="toast">
+        <div class="toast-content">
+            <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            <span class="toast-message" id="toastMessage"></span>
+        </div>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+    <script src="js/settings.js"></script>
+</body>
+</html>
