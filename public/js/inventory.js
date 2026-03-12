@@ -16,7 +16,7 @@ let inventoryData = [
         condition: 'New',
         purchaseDate: '2024-01-15',
         location: 'IT Department',
-        locationCode: 'Floor 3'
+        locationCode: 'JMS'
     },
     {
         id: 2,
@@ -34,7 +34,7 @@ let inventoryData = [
         condition: 'Good',
         purchaseDate: '2024-02-10',
         location: 'IT Department',
-        locationCode: 'Floor 3'
+        locationCode: 'JMS'
     },
     {
         id: 3,
@@ -52,7 +52,7 @@ let inventoryData = [
         condition: 'New',
         purchaseDate: '2024-01-20',
         location: 'IT Department',
-        locationCode: 'Floor 3'
+        locationCode: 'JMS'
     },
     {
         id: 4,
@@ -70,7 +70,7 @@ let inventoryData = [
         condition: 'New',
         purchaseDate: '2024-02-05',
         location: 'IT Department',
-        locationCode: 'Floor 3'
+        locationCode: 'JMS'
     },
     {
         id: 5,
@@ -88,7 +88,7 @@ let inventoryData = [
         condition: 'Good',
         purchaseDate: '2024-01-25',
         location: 'HR Department',
-        locationCode: 'Floor 2'
+        locationCode: 'MMS'
     },
     {
         id: 6,
@@ -106,7 +106,7 @@ let inventoryData = [
         condition: 'New',
         purchaseDate: '2024-02-20',
         location: 'IT Department',
-        locationCode: 'Floor 3'
+        locationCode: 'JMS'
     },
     {
         id: 7,
@@ -124,7 +124,7 @@ let inventoryData = [
         condition: 'New',
         purchaseDate: '2024-03-01',
         location: 'IT Department',
-        locationCode: 'Floor 3'
+        locationCode: 'JMS'
     },
     {
         id: 8,
@@ -142,7 +142,7 @@ let inventoryData = [
         condition: 'Fair',
         purchaseDate: '2024-01-10',
         location: 'IT Department',
-        locationCode: 'Floor 3'
+        locationCode: 'JMS'
     },
     {
         id: 9,
@@ -160,7 +160,7 @@ let inventoryData = [
         condition: 'New',
         purchaseDate: '2024-02-15',
         location: 'IT Department',
-        locationCode: 'Floor 3'
+        locationCode: 'JMS'
     },
     {
         id: 10,
@@ -178,7 +178,7 @@ let inventoryData = [
         condition: 'Good',
         purchaseDate: '2024-02-28',
         location: 'HR Department',
-        locationCode: 'Floor 2'
+        locationCode: 'MMS'
     }
 ];
 
