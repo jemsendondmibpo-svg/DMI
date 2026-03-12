@@ -454,25 +454,308 @@
 
 /* Print Styles */
 @media print {
+    /* Hide non-printable elements */
     .sidebar,
     .header,
     .export-actions,
-    .toast {
+    .toast,
+    .background-elements,
+    .hamburger,
+    .quick-logout {
         display: none !important;
+    }
+
+    /* Reset page layout */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    @page {
+        size: A4;
+        margin: 1.5cm 1.5cm 2cm 1.5cm;
+    }
+
+    body {
+        background: white !important;
+        margin: 0;
+        padding: 0;
+    }
+
+    .app-container {
+        background: white !important;
     }
 
     .main-content {
         margin-left: 0 !important;
         padding: 0 !important;
+        max-width: 100% !important;
     }
 
-    .chart-card,
-    .table-card,
+    .page-content {
+        padding: 0 !important;
+        background: white !important;
+    }
+
+    /* PDF Header */
+    .page-content::before {
+        content: '';
+        display: block;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 3px solid #B0BF00;
+        background: url('https://cdn.digitalmindsbpo.com/wp-content/uploads/2022/02/Digital-Minds-BPO-Footer-Logo-768x142.png') no-repeat left center;
+        background-size: 200px auto;
+        min-height: 60px;
+    }
+
+    /* Add report title after header */
+    .stats-grid::before {
+        content: 'INVENTORY MANAGEMENT SYSTEM - COMPREHENSIVE REPORT';
+        display: block;
+        font-size: 18pt;
+        font-weight: 700;
+        color: #1f2937;
+        text-align: center;
+        margin-bottom: 0.5rem;
+        font-family: 'Poppins', sans-serif;
+        letter-spacing: -0.02em;
+    }
+
+    /* Add report metadata */
+    .stats-grid::after {
+        content: 'Report Generated: ' attr(data-generated-date);
+        display: block;
+        font-size: 10pt;
+        color: #6b7280;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        margin-top: -0.5rem;
+    }
+
+    /* Stats Grid for PDF */
+    .stats-grid {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 1rem !important;
+        margin-bottom: 2rem !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
     .stat-card {
         page-break-inside: avoid;
         break-inside: avoid;
         box-shadow: none !important;
-        border: 1px solid #e5e7eb !important;
+        border: 1.5px solid #e5e7eb !important;
+        border-radius: 8px !important;
+        padding: 1rem !important;
+        background: white !important;
+    }
+
+    .stat-card::before {
+        display: none !important;
+    }
+
+    .stat-icon-wrapper {
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+        border-radius: 6px !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .stat-icon-wrapper svg {
+        width: 1.25rem !important;
+        height: 1.25rem !important;
+    }
+
+    .stat-label {
+        font-size: 9pt !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .stat-value {
+        font-size: 20pt !important;
+        margin-bottom: 0.25rem !important;
+    }
+
+    .stat-trend {
+        font-size: 8pt !important;
+    }
+
+    /* Charts Grid for PDF */
+    .charts-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem !important;
+        margin-bottom: 2rem !important;
+    }
+
+    .chart-card {
+        page-break-inside: avoid;
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1.5px solid #e5e7eb !important;
+        border-radius: 8px !important;
+        padding: 1rem !important;
+        background: white !important;
+        min-height: 280px !important;
+    }
+
+    .chart-header {
+        padding-bottom: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+        border-bottom: 1px solid #e5e7eb !important;
+    }
+
+    .chart-title {
+        font-size: 11pt !important;
+        margin-bottom: 0.25rem !important;
+    }
+
+    .chart-subtitle {
+        font-size: 9pt !important;
+    }
+
+    .chart-container {
+        height: 220px !important;
+    }
+
+    /* Table for PDF */
+    .table-card {
+        page-break-inside: avoid;
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1.5px solid #e5e7eb !important;
+        border-radius: 8px !important;
+        padding: 1rem !important;
+        background: white !important;
+        margin-top: 2rem !important;
+    }
+
+    .table-header {
+        padding-bottom: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+        border-bottom: 1px solid #e5e7eb !important;
+    }
+
+    .table-title {
+        font-size: 12pt !important;
+        margin-bottom: 0.25rem !important;
+    }
+
+    .table-subtitle {
+        font-size: 9pt !important;
+    }
+
+    .reports-table {
+        width: 100% !important;
+        font-size: 9pt !important;
+    }
+
+    .reports-table thead {
+        background: #f9fafb !important;
+    }
+
+    .reports-table th {
+        padding: 0.5rem !important;
+        font-size: 8pt !important;
+        border-bottom: 2px solid #e5e7eb !important;
+    }
+
+    .reports-table td {
+        padding: 0.5rem !important;
+        border-bottom: 1px solid #f3f4f6 !important;
+    }
+
+    .reports-table tbody tr:last-child td {
+        border-bottom: none !important;
+    }
+
+    /* Asset rank badge */
+    .asset-rank {
+        display: inline-block !important;
+        width: 24px !important;
+        height: 24px !important;
+        line-height: 24px !important;
+        text-align: center !important;
+        border-radius: 50% !important;
+        font-weight: 700 !important;
+        font-size: 9pt !important;
+    }
+
+    /* Category badges in table */
+    .category-badge {
+        padding: 0.125rem 0.5rem !important;
+        border-radius: 4px !important;
+        font-size: 7pt !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+    }
+
+    /* Status badges in table */
+    .asset-status-badge {
+        padding: 0.125rem 0.5rem !important;
+        border-radius: 4px !important;
+        font-size: 7pt !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+    }
+
+    /* Page footer */
+    .page-content::after {
+        content: 'Digital Minds BPO Services Inc. | Inventory Management System | Page ' counter(page);
+        display: block;
+        margin-top: 2rem;
+        padding-top: 1rem;
+        border-top: 1px solid #e5e7eb;
+        text-align: center;
+        font-size: 8pt;
+        color: #6b7280;
+    }
+
+    /* Force page breaks */
+    .chart-card:nth-child(4),
+    .table-card {
+        page-break-before: always;
+        break-before: always;
+    }
+
+    /* Ensure colors print correctly */
+    .stat-card-blue,
+    .stat-icon-blue {
+        background: #eff6ff !important;
+        color: #1e40af !important;
+    }
+
+    .stat-card-green,
+    .stat-icon-green {
+        background: #f0fdf4 !important;
+        color: #15803d !important;
+    }
+
+    .stat-card-amber,
+    .stat-icon-amber {
+        background: #fffbeb !important;
+        color: #d97706 !important;
+    }
+
+    .stat-card-purple,
+    .stat-icon-purple {
+        background: #faf5ff !important;
+        color: #7c3aed !important;
+    }
+
+    /* Print-specific text rendering */
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+
+    /* Optimize charts for print */
+    canvas {
+        max-width: 100% !important;
+        height: auto !important;
     }
 }
 

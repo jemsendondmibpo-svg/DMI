@@ -1,5 +1,121 @@
 /* Inventory Specific Styles */
 
+/* Statistics Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 1rem;
+    border: 1px solid #e5e7eb;
+    padding: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, currentColor, transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.stat-card-gray::before { color: #6b7280; }
+.stat-card-green::before { color: #22c55e; }
+.stat-card-blue::before { color: #3b82f6; }
+.stat-card-orange::before { color: #f59e0b; }
+
+.stat-card:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+    border-color: rgba(176, 191, 0, 0.3);
+}
+
+.stat-card:hover::before {
+    opacity: 1;
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1f2937;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.stat-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover .stat-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.stat-icon svg {
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
+.stat-icon-gray {
+    background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+    color: #6b7280;
+    box-shadow: 0 4px 12px rgba(107, 114, 128, 0.15);
+}
+
+.stat-icon-green {
+    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+    color: #22c55e;
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+}
+
+.stat-icon-blue {
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    color: #3b82f6;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+.stat-icon-orange {
+    background: linear-gradient(135deg, #fffbeb, #fef3c7);
+    color: #f59e0b;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+}
+
 /* Inventory Card */
 .inventory-card {
     background: rgba(255, 255, 255, 0.8);
@@ -837,6 +953,37 @@
     .filter-panel {
         padding: 1rem 1.5rem;
     }
+
+    .modal-large {
+        width: 85%;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .stat-value {
+        font-size: 2.75rem;
+    }
+}
+
+/* Modal Scrollbar Styling */
+.modal-large::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+.modal-large::-webkit-scrollbar-track {
+    background: #f9fafb;
+    border-radius: 0.25rem;
+}
+
+.modal-large::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 0.25rem;
+}
+
+.modal-large::-webkit-scrollbar-thumb:hover {
+    background: #B0BF00;
 }
 
 /* Asset Form Modal Styles */

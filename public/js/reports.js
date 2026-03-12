@@ -457,6 +457,19 @@ function createValueChart() {
 
 // Export PDF
 function exportPDF() {
+    // Add timestamp to stats-grid for print
+    const statsGrid = document.querySelector('.stats-grid');
+    if (statsGrid) {
+        const currentDate = new Date().toLocaleString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+        statsGrid.setAttribute('data-generated-date', currentDate);
+    }
+    
     showToast('Preparing PDF report...', 'success');
     setTimeout(() => {
         window.print();

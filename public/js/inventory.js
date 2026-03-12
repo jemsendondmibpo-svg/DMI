@@ -17,168 +17,6 @@ let inventoryData = [
         purchaseDate: '2024-01-15',
         location: 'IT Department',
         locationCode: 'JMS'
-    },
-    {
-        id: 2,
-        assetName: 'HP EliteDisplay E243',
-        sku: 'MON-HP-002',
-        category: 'Monitor',
-        brand: 'HP',
-        model: 'EliteDisplay E243',
-        serialNumber: 'SN987654321',
-        quantity: 3,
-        minQuantity: 5,
-        price: 18500,
-        stockStatus: 'Low Stock',
-        assetStatus: 'Available',
-        condition: 'Good',
-        purchaseDate: '2024-02-10',
-        location: 'IT Department',
-        locationCode: 'JMS'
-    },
-    {
-        id: 3,
-        assetName: 'Logitech MX Keys',
-        sku: 'KBD-LG-003',
-        category: 'Keyboard',
-        brand: 'Logitech',
-        model: 'MX Keys',
-        serialNumber: 'SN456789123',
-        quantity: 0,
-        minQuantity: 3,
-        price: 8500,
-        stockStatus: 'Out of Stock',
-        assetStatus: 'Available',
-        condition: 'New',
-        purchaseDate: '2024-01-20',
-        location: 'IT Department',
-        locationCode: 'JMS'
-    },
-    {
-        id: 4,
-        assetName: 'Logitech MX Master 3',
-        sku: 'MSE-LG-004',
-        category: 'Mouse',
-        brand: 'Logitech',
-        model: 'MX Master 3',
-        serialNumber: 'SN789123456',
-        quantity: 8,
-        minQuantity: 5,
-        price: 5500,
-        stockStatus: 'In Stock',
-        assetStatus: 'Available',
-        condition: 'New',
-        purchaseDate: '2024-02-05',
-        location: 'IT Department',
-        locationCode: 'JMS'
-    },
-    {
-        id: 5,
-        assetName: 'Jabra Evolve 75',
-        sku: 'HDS-JB-005',
-        category: 'Headset',
-        brand: 'Jabra',
-        model: 'Evolve 75',
-        serialNumber: 'SN321654987',
-        quantity: 2,
-        minQuantity: 4,
-        price: 15000,
-        stockStatus: 'Low Stock',
-        assetStatus: 'Assigned',
-        condition: 'Good',
-        purchaseDate: '2024-01-25',
-        location: 'HR Department',
-        locationCode: 'MMS'
-    },
-    {
-        id: 6,
-        assetName: 'Logitech C920 HD Pro',
-        sku: 'WCM-LG-006',
-        category: 'Webcam',
-        brand: 'Logitech',
-        model: 'C920 HD Pro',
-        serialNumber: 'SN654987321',
-        quantity: 10,
-        minQuantity: 3,
-        price: 4500,
-        stockStatus: 'In Stock',
-        assetStatus: 'Available',
-        condition: 'New',
-        purchaseDate: '2024-02-20',
-        location: 'IT Department',
-        locationCode: 'JMS'
-    },
-    {
-        id: 7,
-        assetName: 'Dell UltraSharp U2720Q',
-        sku: 'MON-DL-007',
-        category: 'Monitor',
-        brand: 'Dell',
-        model: 'UltraSharp U2720Q',
-        serialNumber: 'SN147258369',
-        quantity: 12,
-        minQuantity: 5,
-        price: 35000,
-        stockStatus: 'In Stock',
-        assetStatus: 'Available',
-        condition: 'New',
-        purchaseDate: '2024-03-01',
-        location: 'IT Department',
-        locationCode: 'JMS'
-    },
-    {
-        id: 8,
-        assetName: 'HP EliteDesk 800 G6',
-        sku: 'SYS-HP-008',
-        category: 'System Unit',
-        brand: 'HP',
-        model: 'EliteDesk 800 G6',
-        serialNumber: 'SN258369147',
-        quantity: 6,
-        minQuantity: 5,
-        price: 52000,
-        stockStatus: 'In Stock',
-        assetStatus: 'Under Maintenance',
-        condition: 'Fair',
-        purchaseDate: '2024-01-10',
-        location: 'IT Department',
-        locationCode: 'JMS'
-    },
-    {
-        id: 9,
-        assetName: 'Keychron K8 Pro',
-        sku: 'KBD-KC-009',
-        category: 'Keyboard',
-        brand: 'Keychron',
-        model: 'K8 Pro',
-        serialNumber: 'SN369147258',
-        quantity: 7,
-        minQuantity: 3,
-        price: 9500,
-        stockStatus: 'In Stock',
-        assetStatus: 'Available',
-        condition: 'New',
-        purchaseDate: '2024-02-15',
-        location: 'IT Department',
-        locationCode: 'JMS'
-    },
-    {
-        id: 10,
-        assetName: 'Razer DeathAdder V2',
-        sku: 'MSE-RZ-010',
-        category: 'Mouse',
-        brand: 'Razer',
-        model: 'DeathAdder V2',
-        serialNumber: 'SN741852963',
-        quantity: 5,
-        minQuantity: 5,
-        price: 4200,
-        stockStatus: 'In Stock',
-        assetStatus: 'Assigned',
-        condition: 'Good',
-        purchaseDate: '2024-02-28',
-        location: 'HR Department',
-        locationCode: 'MMS'
     }
 ];
 
@@ -190,6 +28,27 @@ let filterCategory = 'all';
 let filterStock = 'all';
 let filterAssetStatus = 'all';
 let editingAsset = null;
+
+// Update Statistics
+function updateStatistics() {
+    // Calculate total assets
+    const totalAssets = inventoryData.length;
+    
+    // Calculate available count
+    const availableCount = inventoryData.filter(asset => asset.assetStatus === 'Available').length;
+    
+    // Calculate assigned count
+    const assignedCount = inventoryData.filter(asset => asset.assetStatus === 'Assigned').length;
+    
+    // Calculate under maintenance count
+    const maintenanceCount = inventoryData.filter(asset => asset.assetStatus === 'Under Maintenance').length;
+    
+    // Update the DOM
+    document.getElementById('totalAssets').textContent = totalAssets;
+    document.getElementById('availableCount').textContent = availableCount;
+    document.getElementById('assignedCount').textContent = assignedCount;
+    document.getElementById('maintenanceCount').textContent = maintenanceCount;
+}
 
 // Category Styles
 const categoryStyles = {
@@ -206,6 +65,7 @@ const categoryStyles = {
 document.addEventListener('DOMContentLoaded', () => {
     renderInventory();
     initializeEventListeners();
+    updateStatistics();
 });
 
 // Initialize Event Listeners
@@ -692,6 +552,7 @@ function handleFormSubmit(e) {
 
     closeAssetModal();
     renderInventory();
+    updateStatistics();
 }
 
 // Generate SKU
@@ -733,6 +594,7 @@ function deleteAsset(id) {
     inventoryData = inventoryData.filter(a => a.id !== id);
     closeDeleteModal();
     renderInventory();
+    updateStatistics();
     showToast('Asset deleted successfully!', 'success');
 }
 
